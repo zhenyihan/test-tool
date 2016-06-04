@@ -10,14 +10,6 @@
 #include <windows.h>
 #include <stdio.h>
 
-/*
-bool stringchecksub(char const * str,char const *sub){
-	size_t slen=strlen(str);
-	size_t sublen=strlen(sub);
-	if (slen<sublen) return false;
-	if (!strcmp(str+slen-sublen,sub)) return true;
-	return false;
-}*/
 
 bool stringchecksub(char const * str){
 	size_t slen=strlen(str);
@@ -83,8 +75,9 @@ void GetAndPrintAllFile(TCHAR const * path){
 #ifndef ONLINERUN
 		_tprintf(_T("%s\\%s\n"),path,nex->d_name);
 #else
-		_stprintf(tmp,_T("%s\\%s > out.tmp"),path,nex->d_name);
-		_tprintf(_T("%s(%d)\n"),tmp,(nerror=system(tmp)));
+		_stprintf(str,_T("%s\\%s"),path,nex->d_name);
+		_stprintf(tmp,_T("%s > out.tmp"),str);
+		_tprintf(_T("Current executable file:%s\nExit code:(%d)\n"),tmp,(nerror=system(tmp)));
 		printfile("out.tmp");
 #endif
 	}
@@ -103,4 +96,3 @@ int _tmain(int argc, TCHAR const *argv[]){
 	GetAndPrintAllFile(argc==1?a:argv[1]);
 	return nerror.w;
 }
-
