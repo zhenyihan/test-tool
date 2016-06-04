@@ -77,7 +77,7 @@ void GetAndPrintAllFile(TCHAR const * path){
 #else
 		_stprintf(str,_T("%s\\%s"),path,nex->d_name);
 		_stprintf(tmp,_T("%s > out.tmp"),str);
-		_tprintf(_T("Current executable file:%s\nExit code:(%d)\n"),tmp,(nerror=system(tmp)));
+		_tprintf(_T("Current executable file:%s\nExit code:(%d)\n"),str,(nerror=system(tmp)));
 		printfile("out.tmp");
 #endif
 	}
